@@ -1,13 +1,22 @@
 
 import './Cart.css'
-const Cart = ({cart}) => {
+const Cart = ({ cart, handleRemove }) => {
+
     return (
-        <div  className="cart-container">
-            <h3>cart: {cart.length}</h3>
+      
+
+        <div className="cart-container">
+              <h3>cart: {cart.length}</h3>
+
+            
             {
-                cart.map(bottle => <img src={bottle.img}></img>)
+                cart.map(bottle => 
+                <div className='cart-content'>
+                    <img src={bottle.img}></img>
+                    <button onClick={() => handleRemove(bottle.id)}>remove</button>
+                </div>)
             }
-              
+
         </div>
     );
 };

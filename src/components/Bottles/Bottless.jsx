@@ -3,7 +3,7 @@ import { useState } from "react";
 import Bottle from "../Bottle/Bottle";
 import './Bottles.css'
 
-import { addCartItemToLs, getStoredCart } from "../../utilities/localstorage";
+import { addCartItemToLs, getStoredCart, removeFromLs } from "../../utilities/localstorage";
 import Cart from "../Cart/Cart";
 
 
@@ -48,13 +48,24 @@ const Bottless = () => {
 
     }
 
+
+    const handleRemove = (id) => {
+        const remainingCartItem = cart.filter(bottle => bottle.id !== id);
+        setCart(remainingCartItem);
+        removeFromLs(id);
+      
+    }
+
     return (
         <div>
             <h3>Bottles: {bottles.length}</h3>
 
             <div>
 
-                <Cart cart={cart}></Cart>
+                <Cart 
+                cart={cart}
+                handleRemove={handleRemove}
+                ></Cart>
 
             </div>
 
